@@ -1,6 +1,6 @@
 [submodule "src/baremetal-runtime"]
 	path = src/baremetal-runtime
 	url = https://github.com/bao-project/bao-baremetal-guest
-[submodule "src/freertos"]
-	path = src/freertos
-	url = https://github.com/FreeRTOS/FreeRTOS-Kernel.git
+[submodule "src/freertos-over-bao"]
+	path = src/freertos-over-bao
+	url = https://github.com/bao-project/freertos-over-bao.git
