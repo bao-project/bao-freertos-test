@@ -33,6 +33,8 @@
 #include <uart.h>
 #include <irq.h>
 #include <plat.h>
+#include <timer.h>
+#include <cpu.h>
 
 /*
  * Prototypes for the standard FreeRTOS callback/hook functions implemented
@@ -49,34 +51,20 @@ void vTask(void *pvParameters)
 {
     unsigned long counter = 0;
     unsigned long id = (unsigned long)pvParameters;
-    while (1)
-    {
-        printf("Task%d: %d\n", id, counter++);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-    }
+
+    testf_entry();
+    while(1);
 }
 
 int main(void){
+    xTaskCreate(
+        vTask,
+        "TaskTest",
+        configMINIMAL_STACK_SIZE,
+        (void *)1,
+        tskIDLE_PRIORITY + 1,
+        NULL);
 
-    
-
-    // xTaskCreate(
-    //     vTask,
-    //     "Task1",
-    //     configMINIMAL_STACK_SIZE,
-    //     (void *)1,
-    //     tskIDLE_PRIORITY + 1,
-    //     NULL);
-
-    // xTaskCreate(
-    //     vTask,
-    //     "Task2",
-    //     configMINIMAL_STACK_SIZE,
-    //     (void *)2,
-    //     tskIDLE_PRIORITY + 1,
-    //     NULL);
-
-    testf_entry();
     vTaskStartScheduler();
 
 }
